@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>BCube</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark static">
+    <div class="row offset-5">
+      <a class="navbar-brand" href="/"><button><img style="height: 50px; width: 50px;" src="/images/home.jpg"></button></a>
+    </div>
+    <div class="row offset-5" style="padding-top: 5px; padding-bottom: 10px;"><a style=" text-decoration: none; " href="/additem"><h4>+add</h4></a><span class="text-muted"></span></div>
+  </nav>
+  {{!-- {{>header}} --}}
+
+  <!-- Page Content -->
+  <div style="padding-top: 10px;" class="container">
+
+    <div class="row">
+
+      <div class="col-lg-9">
+
+        <div class="row">
+          
+            {{#each inventory}}
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card h-60">
+                     <div style="padding-bottom: 0px" class="card-body">
+                        <img style="height: 220px;" class="card-img-top" src="/images/{{this.filename}}" alt="">
+                        <h5 style="padding-top: 10px;" class="card-title">
+                        {{this.product}} <span>&#8358;</span>{{this.price}}
+                        </h5>
+                     </div>
+                     <div class="card-footer text-center" >
+                        <button class="btn btn-sm float-left btn-warning"><a style="text-decoration: none; " href="#"><span>&#9998;</span></a></button>
+                        <form class="form float-right" action="/removeproduct" method="POST">
+                          <input type="hidden" name="productId" value="{{this._id}}" />
+                          <button class="btn btn-sm btn btn-danger" type="submit"><span class="close">&#10005;</span></button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+         {{/each}}
+        </div>
+        <!-- /.row -->
+        
+
+        
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  {{>footer}}
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/jquery/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

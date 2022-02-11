@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Title Page-->
+    <title>login</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" media="all">
+ 
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.css">
+	<!-- Themify Icons -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+
+	
+	<!-- Eshop StyleSheet -->
+	<link rel="stylesheet" href="style.css">
+
+    <link href="/main1.css" rel="stylesheet" media="all">
+
+</head>
+
+<body>
+    {{>header}}
+ 
+    <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-body">
+                    <h2 style="color:bisque" class="title" >login</h2>
+                    <small style="color: red;">{{e}}</small>
+                    <form action="/login " method="POST">
+                        <div class="input-group">
+                            <input class="input--style-3" type="email" placeholder="Email" name="email" autocomplete="off" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" type="password" placeholder="password" name="password" autocomplete="off" required>
+                        </div>
+						<div id="buttin">
+							<div class="p-t-10">
+                            	<button class="btn btn--pill btn--green" type="submit">login</button>
+                        	</div>
+                        	<P style="padding-top: 8px; color:bisque">
+                           		Don't have an account?<a style="text-decoration: none;" href="/signup">Create Account</a>
+                        	</P> 
+						</div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Jquery JS-->
+    <script src="/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="/select2/select2.min.js"></script>
+
+
+      <!-- Bootstrap core JavaScript -->
+  <script src="/jquery/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
