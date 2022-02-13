@@ -8,9 +8,9 @@ const { default: validator } = require('validator')
 // process.env.MONGODB_URL
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
+    // useCreateIndex: true,
+    // useFindAndModify: false,
+    // useUnifiedTopology: true
 })
 
 //Inventory model

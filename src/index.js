@@ -3,8 +3,6 @@ const express = require('express')
 const {Admin, Inventory, User, Cart} = require('./db/mongoose')
 const session = require('express-session')
 const hbs = require('hbs')
-const multer = require('multer')
-const sharp = require('sharp')
 const bodyparser = require('body-parser')
 const async = require('hbs/lib/async')
 const { request } = require('http')
@@ -13,7 +11,7 @@ const { captureRejectionSymbol } = require('events')
 
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 //defining path for express config
 const distPath = path.join(__dirname,'../templates/dist')
@@ -33,8 +31,8 @@ app.use(express.static(distPath))
 
 //setting up node to use session to authenticate user
 app.use(session({
-    secret: process.env.SESS_SECRET,
-    cookie: { maxAge: 3600000 },
+    secret: "thisisasecret",
+    cookie: { maxAge: ''},
     resave: true,
     saveUninitialized: true,
   }))
@@ -251,8 +249,6 @@ app.get('/products', async (req, res) => {
                 const invent = await Inventory
                 console.log(admin.username)
                 invent.find({}, function(e, item) {
-                    let x = item.length
-                    console.log(x)
                     res.render('products',{inventory: item})
                 })
             }
@@ -301,7 +297,7 @@ app.post('/adminlogin', async (req, res) => {
             })
         }
         req.session.user = admin;
-        console.log(req.session.user)
+        // console.log(req.session.user)
         res.redirect('/products')
     } catch (e) {
         res.render('adminlogin',{
