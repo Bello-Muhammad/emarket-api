@@ -1,14 +1,14 @@
 const path = require('path')
 const express = require('express')
 require('./db/mongoose')
-const {Admin, Inventory, User, Cart} = require('./db/mongoose')
 const session = require('express-session')
+const compression = require('compression')
 const hbs = require('hbs')
 const bodyparser = require('body-parser')
 const async = require('hbs/lib/async')
 const { request } = require('http')
 const { captureRejectionSymbol } = require('events')
-const libraryRouter = require('./routers/mart')
+const martRouter = require('./routers/mart')
 const adminRouter = require('./routers/admin')
 
 
@@ -29,17 +29,26 @@ hbs.registerPartials(partialPath)
 //setup static directory to serve
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(express.static(distPath))
+app.use(compression())
 
 //setting up node to use session to authenticate user
 app.use(session({
     secret: process.env.SESS_SECRET,
-    cookie: { maxAge: ''},
+    cookie: { maxAge: 3600000 },
     resave: true,
     saveUninitialized: true,
 }))
 
 
 app.use(adminRouter)
-app.use(libraryRouter)
+app.use(martRouter)
+
+
+app.get ('*', (req, res) => {
+    res.render('404',{
+        title: '404 page',
+        errorMessage: 'page not found'
+    })
+})
 
 module.exports = app
