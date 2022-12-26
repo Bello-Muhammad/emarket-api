@@ -9,4 +9,4 @@ mongoose.connect(process.env.MONGODB_URL, {
     useUnifiedTopology: true
 })
 
-
+mongoose.set('strictQuery', true);
