@@ -92,11 +92,11 @@
 
         <div class="row">
 
-          {{#each inventory.item}}
+          {{#each inventory}}
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-70">
                 <div style="padding-bottom: 0px" class="card-body">
-                  <img style="height: 200px;" class="card-img-top" src='/images/{{this.filename}}' alt="">
+                  <img style="height: 200px;" class="card-img-top" src={{this.imageUri}} alt='img'>
                   <h5 style="padding-top: 10px;" class="card-title">
                     {{this.product}}  <span style="padding-left: 20px;">&#8358;</span>{{this.price}}
                   </h5>

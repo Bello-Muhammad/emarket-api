@@ -15,7 +15,7 @@ const cartSchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
-    filename: {
+    imageUri: {
         type: String
     },
     userid: {
@@ -24,13 +24,14 @@ const cartSchema = new mongoose.Schema({
     }
 })
 
-cartSchema.statics.findByProduct = async (product) => {
+cartSchema.statics.findByProduct = async (product, next) => {
     const cart = await Cart.findOne({ product })
     if (cart) {
         cart.quantity+=1
         cart.save()
     }
     
+    next()
 }
 
 

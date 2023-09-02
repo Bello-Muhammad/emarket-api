@@ -7,14 +7,17 @@ const validator = require('validator')
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
+        require: true,
         trim: true
     },
     lastName: {
         type: String,
+        require: true,
         trim: true
     },
     email: {
         type: String,
+        require: true,
         unique: true,
         lowercase: true,
         trim: true,
@@ -27,6 +30,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
+        require: true,
         minlength: 7,
         trim: true,
         validate(value) {
@@ -36,16 +40,31 @@ const userSchema = new mongoose.Schema({
         }
     },
     address: {
-        type: String
+        type: String,
+        require: true,
     },
     phoneNumber: {
         type: Number,
+        require: true,
         minlength: 11
+    },
+    role: {
+        type: String,
+        default: 'user'
     }
 })
 
 
 //userSchema
+userSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+
+    delete userObject.password
+
+    return userObject
+}
+
 userSchema.pre('save', async function(next) {
     const user = this
 

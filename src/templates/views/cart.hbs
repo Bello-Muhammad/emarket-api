@@ -52,9 +52,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							{{#each carts.products 	}}
+							{{#each carts }}
 							<tr>
-								<td class="image" data-title="No"><img src="/images/{{this.filename}}" alt="#"></td>
+								<td class="image" data-title="No"><img src={{this.imageUri}} alt='#'></td>
 								<td class="product-des" data-title="Description">
 									<p class="product-name"><a href="#">{{this.product}}</a></p>
 								</td>

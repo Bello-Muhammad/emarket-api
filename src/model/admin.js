@@ -7,10 +7,16 @@ const validator = require('validator')
 const adminSchema = new mongoose.Schema({
     username: {
         type: String,
+        require: true,
         trim: true
+    },
+    role: {
+        type: String,
+        default: 'admin'
     },
     password: {
         type: String,
+        require: true,
         minlength: 7,
         trim: true,
         validate(value) {
@@ -20,6 +26,15 @@ const adminSchema = new mongoose.Schema({
         }
     }
 })
+
+adminSchema.methods.toJSON = function () {
+    const user = this
+    const userObject = user.toObject()
+
+    delete userObject.password
+
+    return userObject
+}
 
 adminSchema.pre('save', async function(next) {
     const admin = this

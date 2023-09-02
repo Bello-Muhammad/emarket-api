@@ -13,7 +13,7 @@ const inventorySchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
-    filename: {
+    imageUri: {
         type: String
     }
 })

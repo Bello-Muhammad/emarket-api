@@ -8,8 +8,9 @@ const bodyparser = require('body-parser')
 const async = require('hbs/lib/async')
 const { request } = require('http')
 const { captureRejectionSymbol } = require('events')
-const martRouter = require('./routers/mart')
-const adminRouter = require('./routers/admin')
+const adminRouter = require('./routers/adminRoute');
+const userRouter = require('./routers/userRoute')
+const martRouter = require('./routers/martRoute')
 
 
 
@@ -39,9 +40,10 @@ app.use(session({
     saveUninitialized: true,
 }))
 
+app.use(adminRouter);
+app.use(userRouter);
+app.use(martRouter);
 
-app.use(adminRouter)
-app.use(martRouter)
 
 
 app.get ('*', (req, res) => {

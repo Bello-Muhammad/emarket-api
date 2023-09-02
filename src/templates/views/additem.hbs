@@ -27,8 +27,8 @@
                     <h2 class="title">Add item to inventory</h2>
                 </div>
                 <div class="card-body">
-                    <div style="margin-left: 800px; padding-top: 5px; padding-bottom: 10px;"><a style=" text-decoration: none; " href="/products"><h3><span class="text-muted">&leftarrow;Done</span></h3></a></div>
-                    <form method="POST" action="/additem">
+                    <div style="margin-left: 800px; padding-top: 5px; padding-bottom: 10px;"><a style=" text-decoration: none; " href="/admin/home"><h3><span class="text-muted">&leftarrow;Done</span></h3></a></div>
+                    <form method="POST" action="/admin/additem">
                          <div class="form-row">
                             <div class="name">product</div>
                             <div class="value">
@@ -49,13 +49,9 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">product image</div>
+                            <div class="name">product image Url</div>
                             <div class="value">
-                                <div class="input-group js-input-file">
-                                    <input class="input-file" type="file" name="avatar" id="file">
-                                    <label class="label--file" for="file">choose image</label>
-                                    <span class="input-file__info">No image chosen</span>
-                                </div>
+                                <input class="input--style-6" type="text" name="imageUri" required />
                             </div>
                         </div>
                         <div class="card-footer">

@@ -20,7 +20,7 @@
     <div class="row offset-5">
       <a class="navbar-brand" href="/"><button><img style="height: 50px; width: 50px;" src="/images/home.jpg"></button></a>
     </div>
-    <div class="row offset-5" style="padding-top: 5px; padding-bottom: 10px;"><a style=" text-decoration: none; " href="/additem"><h4>+add</h4></a><span class="text-muted"></span></div>
+    <div class="row offset-5" style="padding-top: 5px; padding-bottom: 10px;"><a style=" text-decoration: none; " href="/admin/additem"><h4>+add</h4></a><span class="text-muted"></span></div>
   </nav>
   {{!-- {{>header}} --}}
 
@@ -37,14 +37,14 @@
                <div class="col-lg-4 col-md-6 mb-4">
                   <div class="card h-60">
                      <div style="padding-bottom: 0px" class="card-body">
-                        <img style="height: 220px;" class="card-img-top" src="/images/{{this.filename}}" alt="">
+                        <img style="height: 220px;" class="card-img-top" src="{{this.imageUri}}" alt="img">
                         <h5 style="padding-top: 10px;" class="card-title">
                         {{this.product}} <span>&#8358;</span>{{this.price}}
                         </h5>
                      </div>
                      <div class="card-footer text-center" >
                         <button class="btn btn-sm float-left btn-warning"><a style="text-decoration: none; " href="#"><span>&#9998;</span></a></button>
-                        <form class="form float-right" action="/removeproduct" method="POST">
+                        <form class="form float-right" action="/admin/removeitem" method="POST">
                           <input type="hidden" name="productId" value="{{this._id}}" />
                           <button class="btn btn-sm btn btn-danger" type="submit"><span class="close">&#10005;</span></button>
                         </form>
