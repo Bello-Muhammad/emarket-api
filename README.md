@@ -28,13 +28,15 @@ $ npm run dev
  
 Tech Stack
 -Client: handlebars, css and Bootstrap.
--Server: JavaScript(Nodejs), Express, and Mongodb.
+-Server: Nodejs, Express, and Mongodb.
 
 Project Structure
 src
   |_ controller
   |_ db
   |_ model
+  |_ middleware
+  |_ services
   |_ routers
   |_ templates(views)
 
