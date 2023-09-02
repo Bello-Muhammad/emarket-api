@@ -30,7 +30,6 @@
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "mongoose": "^6.2.1",
-    "request": "^2.88.2",
     "validator": "^13.7.0"
   }
 }
