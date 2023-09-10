@@ -4,7 +4,6 @@ const { isAuth, authPage } = require('../middleware/auth')
 const {
     getAdminSignUp,
     postAdminSignUp,
-    signup_login,
     getAdminLogin,
     postAdminLogin,
     adminHome,
@@ -15,7 +14,6 @@ const {
 
 router.post('/admin/signup', postAdminSignUp)
 router.get('/admin/signup', getAdminSignUp)
-router.get('/admin/signup-login', signup_login)
 router.get('/admin/login',getAdminLogin)
 router.post('/admin/login',postAdminLogin)
 router.get('/admin/home',  isAuth, authPage(['admin']), adminHome)

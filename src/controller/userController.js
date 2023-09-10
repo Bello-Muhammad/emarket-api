@@ -1,36 +1,29 @@
 const {
     post_SignUp,
-    signup_Login,
     post_Login,
 } = require('../services/userService');
 
 
-
 const getSignUp = (req, res) => {
-    res.render('signup')
+    const { e } = req.query
+
+    if(e){
+        res.render('signup', { e })
+    }else{
+        res.render('signup')
+    }
 }
 
 const postSignUp = async (req, res) => {
     try {
         const body = req.body;
 
-        const data = await post_SignUp(body);
-        res.status(200).redirect('/auth/signup-login?email='+data.email)
-    } catch (err) {
-        res.status(400).redirect('/auth/login');
-    }
-}
-
-const signup_login = async (req, res) => {
-
-    try {
-        const body = req.query;
-
-        const user = await signup_Login(body);
+        const user = await post_SignUp(body);
         req.session.user = user;
-        res.redirect('/')
+        res.status(200).redirect('/')
     } catch (err) {
-        console.log(err)
+        
+        res.status(400).redirect('/auth/signup?e='+err.message);
     }
 }
 
@@ -61,7 +54,6 @@ const postLogin = async (req, res) => {
 module.exports = {
     getSignUp,
     postSignUp,
-    signup_login,
     getLogin,
     postLogin,
 }

@@ -1,4 +1,4 @@
-const { post_AdminSignUp, signup_Login, post_AdminLogin } = require('../services/adminService');
+const { post_AdminSignUp, post_AdminLogin } = require('../services/adminService');
 const { products, post_AddProduct, removeProduct } = require('../services/martService')
 
 
@@ -16,24 +16,12 @@ const getAdminSignUp = (req, res) => {
 const postAdminSignUp = async (req, res) => {
     try {
         const body = req.body;
-        const data = await post_AdminSignUp(body);
-        res.status(200).redirect('/admin/signup-login?username='+data.username)
+        const user = await post_AdminSignUp(body);
+        req.session.user = user;
+        res.status(200).redirect('/admin/home')
     } catch (err) {
         let e = err.message;
         res.status(400).redirect('/admin/signup?exist='+e);
-    }
-}
-
-const signup_login = async (req, res) => {
-
-    try {
-        const body = req.query;
-
-        const user = await signup_Login(body);
-        req.session.user = user;
-        res.redirect('/admin/home')
-    } catch (err) {
-        console.log(err)
     }
 }
 
@@ -109,7 +97,6 @@ const postRemoveProduct = async (req, res) => {
 module.exports = {
     getAdminSignUp,
     postAdminSignUp,
-    signup_login,
     getAdminLogin,
     postAdminLogin,
     adminHome,
