@@ -19,7 +19,7 @@ const post_Cart = async (userid, body) => {
 
     let {_id} = body
     const invent = await Inventory.findOne({ _id });
-    const { product, price, quantity, imageUri} = invent
+    const { product, price, imageUri} = invent
     const cart = await Cart.findOne({ product })
 
     if (cart) {
@@ -29,7 +29,6 @@ const post_Cart = async (userid, body) => {
     let data = {
         product,
         price,
-        quantity,
         imageUri, 
         userid
     }
