@@ -20,17 +20,18 @@ const post_Cart = async (userid, body) => {
     let {_id} = body
     const invent = await Inventory.findOne({ _id });
     const { product, price, quantity, imageUri} = invent
-    const carts = await Cart.findByProduct(product)
+    const cart = await Cart.findOne({ product })
+
+    if (cart) {
+        cart.quantity+=1
+        return await cart.save()
+    }
     let data = {
         product,
         price,
         quantity,
         imageUri, 
         userid
-    }
-
-    if(carts) {
-        throw new Error('item exist in cart')
     }
 
     return await Cart.create(data)
