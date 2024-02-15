@@ -19,8 +19,7 @@ const post_Cart = async (userid, body) => {
 
     let {_id} = body
     const invent = await Inventory.findOne({ _id });
-    console.log(invent)
-    const { product, price, imageUri} = invent
+    const { product, price, imageUri} = invent;
     const cart = await Cart.findOne({ product })
 
     if (cart) {
