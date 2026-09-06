@@ -1,0 +1,5 @@
+###Create product
+POST http://localhost:3000/api/v2 HTTP/1.1
+header name: header value
+
+content
