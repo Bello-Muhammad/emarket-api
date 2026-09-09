@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
+
 
 mongoose.set('strictQuery', true).connect(process.env.MONGODB_URL).then(() => {
     console.log('Database connected successfully🗃️🗃️');

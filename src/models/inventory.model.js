@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
 const inventorySchema = new mongoose.Schema({
     productName: {
@@ -30,7 +30,7 @@ const inventorySchema = new mongoose.Schema({
  * @param {*} data 
  * @returns {}
  */
-Inventory.statics.addProduct = async (data) => {
+inventorySchema.statics.addProduct = async (data) => {
     return await Inventory.create(data);
 }
 
@@ -38,10 +38,14 @@ Inventory.statics.addProduct = async (data) => {
  * @description fetch all product
  * @returns [{}] || []
  */
-inventorySchema.statics.findManyProduct = async () => {
-    const data = await Inventory.find();
+inventorySchema.statics.findManyProduct = async (obj) => {
+    const { parsedLimit, skip} = obj;
 
-    return data ?? [];
+    const data = await Inventory.find(search)
+        .skip(skip)
+        .limit(parsedLimit);
+    
+    return {count: data.length, page, data} ?? [];
 }
 
 /**
@@ -51,22 +55,28 @@ inventorySchema.statics.findManyProduct = async () => {
  */
 inventorySchema.statics.findOneProduct = async (value) => {
 
-    const { productName, _id, category } = value;
+    const { productName, id, category } = value;
     let obj = {}
 
-    if(productName && !_id) obj.productName = productName;
+    if(productName) obj.productName = productName;
 
-    if(_id && !productName) obj._id = _id;
+    if(id) obj._id = id;
 
-    if(category && !_id && !productName) obj.category = category;
-
-    if(productName && category && _id) {
-        obj.productName = productName;
-        obj._id = _id;
-    }
+    if(category) obj.category = category;
 
     return await Inventory.findOne(obj);
 }
+
+/**
+ * @description fetch a product either by id
+ * @param (string) id
+ * @returns {} 'product object'
+ */
+inventorySchema.statics.findProductById = async (id) => {
+    return await Inventory.findById(id);
+}
+
+inventorySchema.static.searchForProduct
 
 /**
  * @description Update a product in collection
@@ -75,7 +85,7 @@ inventorySchema.statics.findOneProduct = async (value) => {
  * @returns {*}
  */
 inventorySchema.statics.updateProduct = async (id, value) => {
-    return await Inventory.findByIdAndUpdate(id, value)
+    return await Inventory.findByIdAndUpdate(id, value,{ new: true})
 }
 
 /**
@@ -89,4 +99,4 @@ inventorySchema.statics.removeProduct = async (id) => {
 
 const Inventory = mongoose.model("Inventory", inventorySchema);
 
-export default Inventory;
+module.exports = Inventory;

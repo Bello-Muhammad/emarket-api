@@ -1,5 +1,32 @@
 ###Create product
-POST http://localhost:3000/api/v2 HTTP/1.1
-header name: header value
+POST http://localhost:3000/api/v2/products/add-product
+Content-Type: application/json
 
-content
+{
+    "productName": "Munch King",
+    "quantity": 40,
+    "category": "junks",
+    "price": 400,
+    "imageUrl": "http://jonllelelel"
+}
+
+###Get all products
+GET http://localhost:3000/api/v2/products
+Content-Type: application/json
+
+###Get a product by it Id
+GET http://localhost:3000/api/v2/products/6a9f050c6637a925b73c5dd7
+Content-Type: application/json
+
+###Update a product
+PATCH http://localhost:3000/api/v2/products/6a9f050c6637a925b73c5dd7
+Content-Type: application/json
+
+{
+    "productName": "Short Bread",
+    "price": 300
+}
+
+###Delete a product a product
+DELETE http://localhost:3000/api/v2/products/6a9f050c6637a925b73c5dd7
+Content-Type: application/json

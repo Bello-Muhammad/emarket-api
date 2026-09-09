@@ -7,12 +7,15 @@ class ResponseHandler {
         });
     }
 
-    static Error = (res, code, message) => {
+    static Error = (res, code, message, Error) => {
+        code = message.includes("not found")? 404: code;
+        
          return res.status(code ?? 200).json({
             status: 'error',
-            message
+            message,
+            error: Error ?? []
         });
     }
 }
 
-export default ResponseHandler;
+module.exports = ResponseHandler;

@@ -1,5 +1,8 @@
-import { Router } from "express"
+const express = require("express");
+const productRouter = require("./product.router");
 
-const apiRouter = Router();
+const apiRouters = express.Router();
 
-module.exports = { apiRouter };
+apiRouters.use('/products', productRouter);
+
+module.exports = apiRouters;
