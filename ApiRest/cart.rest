@@ -1,0 +1,24 @@
+###add item to cart
+POST http://localhost:3000/api/v2/carts
+Content-Type: application/json
+
+{
+    "productId": "6a9f050c6637a925b73c5dd7",
+    "price": 300
+}
+
+###Get Cart items
+GET http://localhost:3000/api/v2/carts
+Content-Type: application/json
+
+###Increase or reduce quantity
+PATCH http://localhost:3000/api/v2/carts/6aa4e5bc34418e62761c197e
+Content-Type: application/json
+
+{
+    "action": "minus" //'add' or 'minus' quantity
+}
+
+###Remove item of all item in cart
+DELETE http://localhost:3000/api/v2/carts/6aa4e5bc34418e62761c197e
+Content-Type: application/json

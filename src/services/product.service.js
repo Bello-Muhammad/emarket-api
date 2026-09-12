@@ -23,7 +23,7 @@ class ProductService {
         const skip = (parseInt(page, 10) -1) * parsedLimit;
 
         
-        return await Inventory.findManyProduct({parsedLimit, skip});
+        return await Inventory.findManyProduct({parsedLimit, skip}, page);
     }
 
     /**

@@ -23,6 +23,8 @@ const inventorySchema = new mongoose.Schema({
         type: String,
         required: true
     }
+},{
+    timestamps: true
 });
 
 /**
@@ -38,10 +40,10 @@ inventorySchema.statics.addProduct = async (data) => {
  * @description fetch all product
  * @returns [{}] || []
  */
-inventorySchema.statics.findManyProduct = async (obj) => {
+inventorySchema.statics.findManyProduct = async (obj, page) => {
     const { parsedLimit, skip} = obj;
 
-    const data = await Inventory.find(search)
+    const data = await Inventory.find()
         .skip(skip)
         .limit(parsedLimit);
     
@@ -76,7 +78,7 @@ inventorySchema.statics.findProductById = async (id) => {
     return await Inventory.findById(id);
 }
 
-inventorySchema.static.searchForProduct
+// inventorySchema.static.searchForProduct
 
 /**
  * @description Update a product in collection

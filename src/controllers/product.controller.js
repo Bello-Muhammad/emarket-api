@@ -30,7 +30,7 @@ class ProductController {
      */
     static async getAllProducts(req, res) {
         try {
-
+            
             const { page, limit } = req.query;
 
             const data = await ProductService.getAllProduct(page, limit);

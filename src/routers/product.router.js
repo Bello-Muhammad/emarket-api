@@ -1,7 +1,7 @@
 const express = require("express");
 const ProductController = require("../controllers/product.controller");
 const validate = require("../middleware/validate");
-const { createProductValidator, getorDeleteProductValidator, updateProductValidator } = require("../middleware/validator");
+const { createProductValidator, getorDeleteProductValidator, updateProductValidator } = require("../middleware/validators/product.validator");
 
 const productRouter = express.Router();
 

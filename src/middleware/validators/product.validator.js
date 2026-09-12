@@ -1,5 +1,5 @@
 const { body, param } = require("express-validator");
-const Inventory = require("../models/inventory.model");
+const Inventory = require("../../models/inventory.model");
 
 const createProductValidator = [
     body('productName')
