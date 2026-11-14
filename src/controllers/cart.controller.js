@@ -1,3 +1,4 @@
+const { matchedData } = require("express-validator");
 const ResponseHandler = require("../responseHandler/index.responseHandler");
 const CartService = require("../services/cart.service");
 
@@ -5,7 +6,8 @@ class CartController {
     static async addItemToCart(req, res) {
         try {
 
-            const data = await CartService.addItemToCart(req.body)
+            const validatedDatOnly = matchedData(req);
+            const data = await CartService.addItemToCart(validatedDatOnly);
 
             return ResponseHandler.success(res, 201, 'Item added to cart successfully', data);
         } catch (error) {

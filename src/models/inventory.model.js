@@ -87,7 +87,7 @@ inventorySchema.statics.findProductById = async (id) => {
  * @returns {*}
  */
 inventorySchema.statics.updateProduct = async (id, value) => {
-    return await Inventory.findByIdAndUpdate(id, value,{ new: true})
+    return await Inventory.findByIdAndUpdate(id, value, { returnDocument: 'after' })
 }
 
 /**

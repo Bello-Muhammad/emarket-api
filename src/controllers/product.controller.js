@@ -1,3 +1,4 @@
+const { matchedData } = require("express-validator");
 const ResponseHandler = require("../responseHandler/index.responseHandler");
 const ProductService = require("../services/product.service");
 
@@ -10,7 +11,8 @@ class ProductController {
      */
     static async createProduct (req, res) {        
         try {
-            const data = await ProductService.createProduct(req.body);
+            const validatedDataOnly = matchedData(req);
+            const data = await ProductService.createProduct(validatedDataOnly);
 
             return ResponseHandler.success(res, 201, 'Product added successfully', data);
         } catch (error) {
@@ -75,6 +77,7 @@ class ProductController {
     static async updateProduct(req, res) {
         try {
             const { productId } = req.params; 
+
             const data = await ProductService.updateProduct(productId, req.body);
 
             return ResponseHandler.success(res, 200, 'Product updated successfully', data);
